@@ -9,7 +9,8 @@ class UserManager(models.Manager):
     def reg(self, firstName, lastName, email, password, passconfirm):
         
         errors = []
-
+        if User.objects.filter(email = email):
+            errors.append("Email already registered!!")
         if len(firstName) < 2:
             errors.append("First Name Too $hort")
         if len(lastName) < 2:
